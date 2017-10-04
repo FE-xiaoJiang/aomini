@@ -1,5 +1,5 @@
 import React from 'react';
-import connect from './libs/connect';
+import connect from '../../libs/connect';
 
 /**
 * siblings1

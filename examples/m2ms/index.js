@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Provider from './libs/Provider';
-import store from './libs/Store';
+import Provider from '../../libs/Provider';
+import store from '../../libs/Store';
 import App from './App';
 
 
