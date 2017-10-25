@@ -18,6 +18,9 @@ class Module1 extends React.Component{
 			</div>
 			)
 	}
+	componentDidUpdate(prevProps, prevState) {
+		console.log("Module1 did update")
+	}
 	setValue(e){
 		let { store } = this.props;
 		console.log(e.target.value);

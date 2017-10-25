@@ -8,7 +8,8 @@ let store = {
 	contexts:[],
 	//state数据
 	state:{
-		m1Var:"111"
+		m1Var:"111",
+		updateCount:1
 	},
 	//注册绑定组件与状态数据，用于setState
 	bindContext(_context){
@@ -25,13 +26,15 @@ let store = {
 	},
 	setState(bs_state,context){
 		let newState = Object.assign(this.state,bs_state);
-		console.log(".......",newState)
+		console.log(".......",this.contexts.length)
 		// this.state = {};
 		this.contexts.map((item)=>{
 			if(!item) return;
 			React.Component.prototype.setState.call(item,bs_state);
 		})
-
+	},
+	getState(){
+		return this.state;
 	}
 }
 

@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 201);
+/******/ 	return __webpack_require__(__webpack_require__.s = 210);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -10144,75 +10144,7 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 83 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(16);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _propTypes = __webpack_require__(184);
-
-var _propTypes2 = _interopRequireDefault(_propTypes);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var connect = function connect(wrappedCompo) {
-	var ConnectHoC = function (_React$Component) {
-		_inherits(ConnectHoC, _React$Component);
-
-		function ConnectHoC(props, context) {
-			_classCallCheck(this, ConnectHoC);
-
-			var _this = _possibleConstructorReturn(this, (ConnectHoC.__proto__ || Object.getPrototypeOf(ConnectHoC)).call(this));
-
-			_this.store = context.store;
-			_this.store.bindContext(_this);
-			return _this;
-		}
-
-		_createClass(ConnectHoC, [{
-			key: 'render',
-			value: function render() {
-				// let arr = [...this.props]
-				// console.log(...this.props)
-				return _react2.default.createElement(wrappedCompo, Object.assign({ store: this.store }, this.props));
-			}
-		}, {
-			key: 'componentWillUnmount',
-			value: function componentWillUnmount() {
-				this.store.unbindContext(this);
-			}
-		}]);
-
-		return ConnectHoC;
-	}(_react2.default.Component);
-
-	ConnectHoC.contextTypes = {
-		store: _propTypes2.default.object
-	};
-
-	return ConnectHoC;
-};
-
-exports.default = connect;
-
-/***/ }),
+/* 83 */,
 /* 84 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -22126,108 +22058,10 @@ module.exports = ReactDOMInvalidARIAHook;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 184 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
-if (process.env.NODE_ENV !== 'production') {
-  var REACT_ELEMENT_TYPE = (typeof Symbol === 'function' &&
-    Symbol.for &&
-    Symbol.for('react.element')) ||
-    0xeac7;
-
-  var isValidElement = function(object) {
-    return typeof object === 'object' &&
-      object !== null &&
-      object.$$typeof === REACT_ELEMENT_TYPE;
-  };
-
-  // By explicitly using `prop-types` you are opting into new development behavior.
-  // http://fb.me/prop-types-in-prod
-  var throwOnDirectAccess = true;
-  module.exports = __webpack_require__(82)(isValidElement, throwOnDirectAccess);
-} else {
-  // By explicitly using `prop-types` you are opting into new production behavior.
-  // http://fb.me/prop-types-in-prod
-  module.exports = __webpack_require__(187)();
-}
-
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
-
-/***/ }),
+/* 184 */,
 /* 185 */,
 /* 186 */,
-/* 187 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
-
-
-var emptyFunction = __webpack_require__(9);
-var invariant = __webpack_require__(1);
-var ReactPropTypesSecret = __webpack_require__(50);
-
-module.exports = function() {
-  function shim(props, propName, componentName, location, propFullName, secret) {
-    if (secret === ReactPropTypesSecret) {
-      // It is still safe when called from React.
-      return;
-    }
-    invariant(
-      false,
-      'Calling PropTypes validators directly is not supported by the `prop-types` package. ' +
-      'Use PropTypes.checkPropTypes() to call them. ' +
-      'Read more at http://fb.me/use-check-prop-types'
-    );
-  };
-  shim.isRequired = shim;
-  function getShim() {
-    return shim;
-  };
-  // Important!
-  // Keep this list in sync with production version in `./factoryWithTypeCheckers.js`.
-  var ReactPropTypes = {
-    array: shim,
-    bool: shim,
-    func: shim,
-    number: shim,
-    object: shim,
-    string: shim,
-    symbol: shim,
-
-    any: shim,
-    arrayOf: getShim,
-    element: shim,
-    instanceOf: getShim,
-    node: shim,
-    objectOf: getShim,
-    oneOf: getShim,
-    oneOfType: getShim,
-    shape: getShim,
-    exact: getShim
-  };
-
-  ReactPropTypes.checkPropTypes = emptyFunction;
-  ReactPropTypes.PropTypes = ReactPropTypes;
-
-  return ReactPropTypes;
-};
-
-
-/***/ }),
+/* 187 */,
 /* 188 */,
 /* 189 */,
 /* 190 */,
@@ -22241,49 +22075,42 @@ module.exports = function() {
 /* 198 */,
 /* 199 */,
 /* 200 */,
-/* 201 */
+/* 201 */,
+/* 202 */,
+/* 203 */,
+/* 204 */,
+/* 205 */,
+/* 206 */,
+/* 207 */,
+/* 208 */,
+/* 209 */,
+/* 210 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _react = __webpack_require__(16);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactDom = __webpack_require__(98);
-
-var _reactDom2 = _interopRequireDefault(_reactDom);
-
-var _Provider = __webpack_require__(202);
-
-var _Provider2 = _interopRequireDefault(_Provider);
-
-var _Store = __webpack_require__(203);
-
-var _Store2 = _interopRequireDefault(_Store);
-
-var _App = __webpack_require__(204);
+var _App = __webpack_require__(211);
 
 var _App2 = _interopRequireDefault(_App);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-_reactDom2.default.render(_react2.default.createElement(
-  _Provider2.default,
-  { store: _Store2.default },
-  _react2.default.createElement(_App2.default, null)
-), document.getElementById("page-container"));
+var React = __webpack_require__(16);
+var ReactDOM = __webpack_require__(98);
+
+
+ReactDOM.render(React.createElement(_App2.default, null), document.getElementById('page-container'));
 
 /***/ }),
-/* 202 */
+/* 211 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 Object.defineProperty(exports, "__esModule", {
-	value: true
+    value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -22292,138 +22119,13 @@ var _react = __webpack_require__(16);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _propTypes = __webpack_require__(184);
-
-var _propTypes2 = _interopRequireDefault(_propTypes);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var Provider = function (_React$Component) {
-	_inherits(Provider, _React$Component);
-
-	_createClass(Provider, [{
-		key: 'getChildContext',
-		value: function getChildContext() {
-			return {
-				store: this.props.store
-			};
-		}
-	}]);
-
-	function Provider(props) {
-		_classCallCheck(this, Provider);
-
-		return _possibleConstructorReturn(this, (Provider.__proto__ || Object.getPrototypeOf(Provider)).call(this, props));
-	}
-
-	_createClass(Provider, [{
-		key: 'render',
-		value: function render() {
-			return _react2.default.Children.only(this.props.children);
-		}
-	}]);
-
-	return Provider;
-}(_react2.default.Component);
-
-Provider.childContextTypes = {
-	store: _propTypes2.default.object
-};
-
-exports.default = Provider;
-
-/***/ }),
-/* 203 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-
-var _react = __webpack_require__(16);
-
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-/**
-* 统一状态管理对象
-*/
-var store = {
-	//目标组件对象
-	contexts: [],
-	//state数据
-	state: {
-		m1Var: "111",
-		updateCount: 1
-	},
-	//注册绑定组件与状态数据，用于setState
-	bindContext: function bindContext(_context) {
-		this.contexts.push(_context);
-		return this.state;
-	},
-	unbindContext: function unbindContext(_context) {
-		for (var i = 0; i < this.contexts.length; i++) {
-			if (this.contexts[i] === _context) {
-				this.contexts[i] = null;
-				console.log(_context);
-			}
-		}
-	},
-	setState: function setState(bs_state, context) {
-		var newState = Object.assign(this.state, bs_state);
-		console.log(".......", this.contexts.length);
-		// this.state = {};
-		this.contexts.map(function (item) {
-			if (!item) return;
-			_react2.default.Component.prototype.setState.call(item, bs_state);
-		});
-	}
-};
-
-exports.default = store;
-
-/***/ }),
-/* 204 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(16);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _Module = __webpack_require__(205);
+var _Module = __webpack_require__(212);
 
 var _Module2 = _interopRequireDefault(_Module);
 
-var _Module3 = __webpack_require__(206);
-
-var _Module4 = _interopRequireDefault(_Module3);
-
-var _ModuleX = __webpack_require__(209);
+var _ModuleX = __webpack_require__(213);
 
 var _ModuleX2 = _interopRequireDefault(_ModuleX);
-
-var _connect = __webpack_require__(83);
-
-var _connect2 = _interopRequireDefault(_connect);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -22437,42 +22139,49 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 * 入口组件
 */
 var App = function (_React$Component) {
-	_inherits(App, _React$Component);
+    _inherits(App, _React$Component);
 
-	function App() {
-		_classCallCheck(this, App);
+    function App() {
+        _classCallCheck(this, App);
 
-		var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this));
+        var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this));
 
-		_this.name = "App";
-		// store.bindContext(this);
-		return _this;
-	}
+        _this.name = "App";
+        _this.state = {
+            moduleQuantity: 900
+            // store.bindContext(this);
+        };return _this;
+    }
 
-	_createClass(App, [{
-		key: 'render',
-		value: function render() {
-			var store = this.props.store;
+    _createClass(App, [{
+        key: 'render',
+        value: function render() {
+            var moduleQuantity = this.state.moduleQuantity;
 
-			return _react2.default.createElement(
-				'div',
-				null,
-				store.state.removeModule1 ? "" : _react2.default.createElement(_Module2.default, null),
-				_react2.default.createElement(_Module4.default, null),
-				_react2.default.createElement(_ModuleX2.default, null)
-			);
-		}
-	}]);
+            console.log("moduleQuantity:", moduleQuantity);
+            return _react2.default.createElement(
+                'div',
+                null,
+                _react2.default.createElement(_Module2.default, { moduleQuantity: moduleQuantity, setModuleQuantity: this.setModuleQuantity.bind(this) }),
+                _react2.default.createElement(_ModuleX2.default, { moduleQuantity: moduleQuantity })
+            );
+        }
+    }, {
+        key: 'setModuleQuantity',
+        value: function setModuleQuantity(moduleQuantity) {
+            this.setState({
+                moduleQuantity: moduleQuantity
+            });
+        }
+    }]);
 
-	return App;
+    return App;
 }(_react2.default.Component);
 
-var AppHoC = (0, _connect2.default)(App);
-
-exports.default = AppHoC;
+exports.default = App;
 
 /***/ }),
-/* 205 */
+/* 212 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22487,10 +22196,6 @@ var _createClass = function () { function defineProperties(target, props) { for 
 var _react = __webpack_require__(16);
 
 var _react2 = _interopRequireDefault(_react);
-
-var _connect = __webpack_require__(83);
-
-var _connect2 = _interopRequireDefault(_connect);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -22511,52 +22216,53 @@ var Module1 = function (_React$Component) {
 
 		var _this = _possibleConstructorReturn(this, (Module1.__proto__ || Object.getPrototypeOf(Module1)).call(this));
 
-		_this.state = {}; // = Object.assign({},store.bindContext(this));
+		_this.state = {
+			moduleQuantity: 900
+		}; // = Object.assign({},store.bindContext(this));
 		return _this;
 	}
 
 	_createClass(Module1, [{
-		key: 'render',
+		key: "render",
 		value: function render() {
-			var store = this.props.store;
+			var moduleQuantity = this.props.moduleQuantity;
 
 			return _react2.default.createElement(
-				'div',
+				"div",
 				null,
 				_react2.default.createElement(
-					'p',
+					"p",
 					null,
-					'--------Module1---------'
+					"--------Module1---------"
 				),
-				_react2.default.createElement('input', { type: 'number', value: store.state.m1Var, onChange: this.setValue.bind(this) })
+				_react2.default.createElement("input", { type: "number", value: moduleQuantity, onChange: this.setValue.bind(this) })
 			);
 		}
 	}, {
-		key: 'componentDidUpdate',
+		key: "componentDidUpdate",
 		value: function componentDidUpdate(prevProps, prevState) {
 			console.log("Module1 did update");
 		}
 	}, {
-		key: 'setValue',
+		key: "setValue",
 		value: function setValue(e) {
-			var store = this.props.store;
-
 			console.log(e.target.value);
-			store.setState({
-				m1Var: e.target.value
-			});
+			// this.setState({
+			// 	moduleQuantity:e.target.value
+			// })
+			var setModuleQuantity = this.props.setModuleQuantity;
+
+			setModuleQuantity(e.target.value);
 		}
 	}]);
 
 	return Module1;
 }(_react2.default.Component);
 
-var Module1HoC = (0, _connect2.default)(Module1);
-
-exports.default = Module1HoC;
+exports.default = Module1;
 
 /***/ }),
-/* 206 */
+/* 213 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22571,269 +22277,6 @@ var _createClass = function () { function defineProperties(target, props) { for 
 var _react = __webpack_require__(16);
 
 var _react2 = _interopRequireDefault(_react);
-
-var _SubModule = __webpack_require__(207);
-
-var _SubModule2 = _interopRequireDefault(_SubModule);
-
-var _SubModule3 = __webpack_require__(208);
-
-var _SubModule4 = _interopRequireDefault(_SubModule3);
-
-var _connect = __webpack_require__(83);
-
-var _connect2 = _interopRequireDefault(_connect);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-/**
-* siblings2
-*/
-var Module2 = function (_React$Component) {
-	_inherits(Module2, _React$Component);
-
-	function Module2() {
-		_classCallCheck(this, Module2);
-
-		var _this = _possibleConstructorReturn(this, (Module2.__proto__ || Object.getPrototypeOf(Module2)).call(this));
-
-		_this.state = {}; // = Object.assign({},store.bindContext(this));
-		return _this;
-	}
-
-	_createClass(Module2, [{
-		key: 'render',
-		value: function render() {
-			var store = this.props.store;
-
-			return _react2.default.createElement(
-				'div',
-				null,
-				_react2.default.createElement(
-					'p',
-					null,
-					'---------Module2---------'
-				),
-				'\u5144\u5F1F\u8282\u70B9Module1\u7684\u503C:',
-				store.state.m1Var,
-				_react2.default.createElement(_SubModule2.default, null),
-				_react2.default.createElement(_SubModule4.default, null)
-			);
-		}
-	}, {
-		key: 'componentDidUpdate',
-		value: function componentDidUpdate(prevProps, prevState) {
-			console.log("Module2 did update");
-		}
-	}]);
-
-	return Module2;
-}(_react2.default.Component);
-
-var Module2HoC = (0, _connect2.default)(Module2);
-
-exports.default = Module2HoC;
-
-/***/ }),
-/* 207 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(16);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _connect = __webpack_require__(83);
-
-var _connect2 = _interopRequireDefault(_connect);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-/**
-* Module2的子组件
-*/
-var SubModule21 = function (_React$Component) {
-	_inherits(SubModule21, _React$Component);
-
-	function SubModule21() {
-		_classCallCheck(this, SubModule21);
-
-		var _this = _possibleConstructorReturn(this, (SubModule21.__proto__ || Object.getPrototypeOf(SubModule21)).call(this));
-
-		_this.state = {}; //= Object.assign({},store.bindContext(this));
-		return _this;
-	}
-
-	_createClass(SubModule21, [{
-		key: 'render',
-		value: function render() {
-			return _react2.default.createElement(
-				'div',
-				null,
-				_react2.default.createElement(
-					'p',
-					null,
-					'-------SubModule21--------'
-				),
-				_react2.default.createElement(
-					'button',
-					{ onClick: this.clean.bind(this) },
-					'\u6E05\u7A7AModule1\u7684\u503C'
-				)
-			);
-		}
-	}, {
-		key: 'clean',
-		value: function clean() {
-			var store = this.props.store;
-
-			store.setState({
-				m1Var: ""
-			});
-		}
-	}]);
-
-	return SubModule21;
-}(_react2.default.Component);
-
-var SubModule21HoC = (0, _connect2.default)(SubModule21);
-
-exports.default = SubModule21HoC;
-
-/***/ }),
-/* 208 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(16);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _connect = __webpack_require__(83);
-
-var _connect2 = _interopRequireDefault(_connect);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-/**
-* Module2的子组件
-*/
-var SubModule22 = function (_React$Component) {
-	_inherits(SubModule22, _React$Component);
-
-	function SubModule22() {
-		_classCallCheck(this, SubModule22);
-
-		var _this = _possibleConstructorReturn(this, (SubModule22.__proto__ || Object.getPrototypeOf(SubModule22)).call(this));
-
-		_this.state = {}; //= Object.assign({},store.bindContext(this));
-		return _this;
-	}
-
-	_createClass(SubModule22, [{
-		key: 'render',
-		value: function render() {
-			return _react2.default.createElement(
-				'div',
-				null,
-				_react2.default.createElement(
-					'p',
-					null,
-					'-------SubModule22--------'
-				),
-				_react2.default.createElement(
-					'button',
-					{ onClick: this.removeModule1.bind(this) },
-					'\u79FB\u9664Module1\u7EC4\u4EF6'
-				),
-				_react2.default.createElement(
-					'button',
-					{ onClick: this.addModule1.bind(this) },
-					'\u6DFB\u52A0Module1\u7EC4\u4EF6'
-				)
-			);
-		}
-	}, {
-		key: 'removeModule1',
-		value: function removeModule1() {
-			var store = this.props.store;
-
-			store.setState({
-				removeModule1: 1
-			});
-		}
-	}, {
-		key: 'addModule1',
-		value: function addModule1() {
-			var store = this.props.store;
-
-			store.setState({
-				removeModule1: 0
-			});
-		}
-	}]);
-
-	return SubModule22;
-}(_react2.default.Component);
-
-var SubModule22HoC = (0, _connect2.default)(SubModule22);
-
-exports.default = SubModule22HoC;
-
-/***/ }),
-/* 209 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(16);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _connect = __webpack_require__(83);
-
-var _connect2 = _interopRequireDefault(_connect);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -22856,24 +22299,23 @@ var SubModuleX = function (_React$Component) {
 	}
 
 	_createClass(SubModuleX, [{
-		key: 'render',
+		key: "render",
 		value: function render() {
 			var _props = this.props,
-			    store = _props.store,
 			    mIndex = _props.mIndex,
 			    updateCount = _props.updateCount;
 
 			return _react2.default.createElement(
-				'div',
+				"div",
 				null,
-				'sub module ',
+				"sub module ",
 				mIndex,
-				',update count:',
+				",update count:",
 				updateCount
 			);
 		}
 	}, {
-		key: 'componentDidUpdate',
+		key: "componentDidUpdate",
 		value: function componentDidUpdate(prevProps, prevState) {
 			// console.log("SubModuleX did update")
 		}
@@ -22881,12 +22323,12 @@ var SubModuleX = function (_React$Component) {
 
 	return SubModuleX;
 }(_react2.default.Component);
-
-var SubModuleXHoC = (0, _connect2.default)(SubModuleX);
+// let SubModuleXHoC = connect(mapStateToPropsConnect,mapDispatchToPropsConnect)(SubModuleX);
 
 /**
 * siblings2
 */
+
 
 var ModuleX = function (_React$Component2) {
 	_inherits(ModuleX, _React$Component2);
@@ -22899,54 +22341,56 @@ var ModuleX = function (_React$Component2) {
 		_this2.startTime = 0;
 		_this2.state = {
 			updateCount: 1
-		}; // = Object.assign({},store.bindContext(this));
+		};
 		return _this2;
 	}
 
 	_createClass(ModuleX, [{
-		key: 'render',
+		key: "render",
 		value: function render() {
-			var store = this.props.store;
+			var moduleQuantity = this.props.moduleQuantity;
+			var updateCount = this.state.updateCount;
 
-			var subNum = Number(store.state.m1Var);
+			console.log("&&&&&&&&&&&", updateCount);
+			var subNum = Number(moduleQuantity || 0);
 			return _react2.default.createElement(
-				'div',
+				"div",
 				null,
 				_react2.default.createElement(
-					'p',
+					"p",
 					null,
-					'---------ModuleX---------'
+					"---------ModuleX---------"
 				),
-				'\u5144\u5F1F\u8282\u70B9Module1\u7684\u503C:',
-				store.state.m1Var,
+				"\u5144\u5F1F\u8282\u70B9Module1\u7684\u503C:",
+				moduleQuantity,
 				_react2.default.createElement(
-					'button',
+					"button",
 					{ onClick: this.updateX.bind(this) },
-					'\u66F4\u65B0'
+					"\u66F4\u65B0"
 				),
 				subNum <= 0 ? "" : Array(subNum).fill(1).map(function (item, i) {
-					return _react2.default.createElement(SubModuleXHoC, { key: i, mIndex: i + 1, updateCount: store.state.updateCount });
+					return _react2.default.createElement(SubModuleX, { key: i, mIndex: i + 1, updateCount: updateCount });
 				})
 			);
 		}
 	}, {
-		key: 'componentWillUpdate',
+		key: "componentWillUpdate",
 		value: function componentWillUpdate(nextProps, nextState) {
 			this.startTime = new Date().getTime();
 			console.log("ModuleX will update");
 		}
 	}, {
-		key: 'componentDidUpdate',
+		key: "componentDidUpdate",
 		value: function componentDidUpdate(prevProps, prevState) {
 			console.log("ModuleX did update using time:", new Date().getTime() - this.startTime);
 		}
 	}, {
-		key: 'updateX',
+		key: "updateX",
 		value: function updateX() {
-			var store = this.props.store;
+			var updateCount = this.state.updateCount;
 
-			store.setState({
-				updateCount: Number(store.state.updateCount) + 1
+			this.setState({
+				updateCount: updateCount + 1
 			});
 		}
 	}]);
@@ -22954,9 +22398,7 @@ var ModuleX = function (_React$Component2) {
 	return ModuleX;
 }(_react2.default.Component);
 
-var ModuleXHoC = (0, _connect2.default)(ModuleX);
-
-exports.default = ModuleXHoC;
+exports.default = ModuleX;
 
 /***/ })
 /******/ ]);

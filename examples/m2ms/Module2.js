@@ -22,6 +22,9 @@ class Module2 extends React.Component{
 			</div>
 			)
 	}
+	componentDidUpdate(prevProps, prevState) {
+		console.log("Module2 did update")
+	}
 }
 let Module2HoC = connect(Module2);
 

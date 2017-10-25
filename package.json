@@ -14,6 +14,8 @@
     "less": "^2.7.2",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
+    "react-redux": "^5.0.6",
+    "redux": "^3.7.2",
     "urlencode": "^1.1.0",
     "webpack": "^3.5.5"
   },
@@ -35,7 +37,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack --config webpack.config.js --progress --colors --display-error-details --watch --env.production=0",
     "product": "webpack --config webpack.config.js --env.production=1",
-    "start": "webpack-dev-server --open --watch --env.production=0"
+    "start": "webpack-dev-server  --config webpack.config.js --progress --open --watch --env.production=0"
   },
   "repository": {
     "type": "git",

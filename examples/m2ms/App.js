@@ -1,6 +1,7 @@
 import React from 'react';
 import Module1 from './Module1';
 import Module2 from './Module2';
+import ModuleX from './ModuleX';
 import connect from '../../libs/connect';
 
 /**
@@ -18,6 +19,7 @@ class App extends React.Component{
 			<div>
 				{store.state.removeModule1?"":<Module1 />}
 				<Module2 />
+				<ModuleX />
 			</div>
 			)
 	}

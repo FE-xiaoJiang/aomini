@@ -1,7 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-let connect = function(wrappedCompo){
+function mapStateToProps(state){
+	return {
+
+	}
+}
+
+let connect = function(wrappedCompo,mapStateToProps){
 	class ConnectHoC extends React.Component{
 		constructor(props,context){
 			super();
@@ -9,7 +15,11 @@ let connect = function(wrappedCompo){
 			this.store.bindContext(this);
 		}
 		render(){
-			return React.createElement(wrappedCompo,{store:this.store});
+			// let props = mapStateToProps && mapStateToProps(this.store.getState());
+			// props = Object.assign(props,this.props);
+			// let arr = [...this.props]
+			// console.log(...this.props)
+			return React.createElement(wrappedCompo,Object.assign({store:this.store},this.props));
 		}
 		componentWillUnmount(){
 			this.store.unbindContext(this);
