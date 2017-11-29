@@ -18,12 +18,9 @@ class SubModule21 extends React.Component{
 			)
 	}
 	clean(){
-		let { setState } = this.props;
-		setState({
-			m1Var:""
-		})
+		this.props.setModuleQuantity && this.props.setModuleQuantity(0);
 	}
 }
-let SubModule21HoC = connect(SubModule21);
+// let SubModule21HoC = connect(SubModule21);
 
-export default SubModule21HoC;
+export default SubModule21;

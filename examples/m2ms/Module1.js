@@ -10,11 +10,11 @@ class Module1 extends React.Component{
 		this.state = {};// = Object.assign({},store.bindContext(this));
 	}
 	render(){
-		let { store } = this.props;
+		let { m1Var } = this.props;
 		return (
 			<div>
 				<p>--------Module1---------</p>
-				<input type="number" value={store.state.m1Var} onChange={this.setValue.bind(this)} />
+				<input type="number" value={m1Var} onChange={this.setValue.bind(this)} />
 			</div>
 			)
 	}
@@ -22,13 +22,17 @@ class Module1 extends React.Component{
 		console.log("Module1 did update")
 	}
 	setValue(e){
-		let { store } = this.props;
+		let { setState } = this.props;
 		console.log(e.target.value);
-		store.setState({
+		setState({
 			m1Var:e.target.value
 		})
 	}
 }
-let Module1HoC = connect(Module1);
+let Module1HoC = connect(Module1,function(state){
+	return{
+		m1Var:state.m1Var
+	}
+});
 
 export default Module1HoC;

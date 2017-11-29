@@ -19,18 +19,26 @@ class SubModule22 extends React.Component{
 			)
 	}
 	removeModule1(){
-		let { store } = this.props;
-		store.setState({
+		let { setState } = this.props;
+		setState({
 			removeModule1:1
 		})
 	}
 	addModule1(){
-		let { store } = this.props;
-		store.setState({
+		let { setState } = this.props;
+		setState({
 			removeModule1:0
 		})
 	}
 }
-let SubModule22HoC = connect(SubModule22);
+let mapStateToProps = function(){
+
+}
+
+let SubModule22HoC = connect(SubModule22,function(state){
+	return {
+		removeModule1:state.removeModule1
+	}
+});
 
 export default SubModule22HoC;

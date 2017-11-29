@@ -12,11 +12,11 @@ class Module2 extends React.Component{
 		this.state = {};// = Object.assign({},store.bindContext(this));
 	}
 	render(){
-		let { store } = this.props;
+		let { m1Var } = this.props;
 		return (
 			<div>
 				<p>---------Module2---------</p>
-				兄弟节点Module1的值:{store.state.m1Var}
+				兄弟节点Module1的值:{m1Var}
 				<SubModule21 />
 				<SubModule22 />
 			</div>

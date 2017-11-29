@@ -7,7 +7,7 @@ class SubModuleX extends React.Component{
 		this.state = {};
 	}
 	render() {
-		let { store, mIndex, updateCount } = this.props;
+		let { mIndex, updateCount } = this.props;
 		return <div>sub module {mIndex},update count:{updateCount}</div>
 	}
 	componentDidUpdate(prevProps, prevState) {
@@ -28,18 +28,18 @@ class ModuleX extends React.Component{
 		};// = Object.assign({},store.bindContext(this));
 	}
 	render(){
-		let { store } = this.props;
-		let subNum = Number(store.state.m1Var);
+		let { m1Var,updateCount } = this.props;
+		let subNum = Number(m1Var);
 		return (
 			<div>
 				<p>---------ModuleX---------</p>
-				兄弟节点Module1的值:{store.state.m1Var}
+				兄弟节点Module1的值:{m1Var}
 				<button onClick={this.updateX.bind(this)}>更新</button>
 				{
 					subNum <= 0 ? "":(
 						Array(subNum).fill(1).map((item,i)=>{
 							return (
-								<SubModuleXHoC key={i} mIndex={i+1} updateCount={store.state.updateCount} />
+								<SubModuleXHoC key={i} mIndex={i+1} updateCount={updateCount} />
 							)
 						})
 					)
@@ -55,12 +55,17 @@ class ModuleX extends React.Component{
 		console.log("ModuleX did update using time:",new Date().getTime() - this.startTime)
 	}
 	updateX(){
-		let { store } = this.props;
-		store.setState({
-			updateCount:Number(store.state.updateCount)+1
+		let { updateCount,setState } = this.props;
+		setState({
+			updateCount:Number(updateCount)+1
 		})
 	}
 }
-let ModuleXHoC = connect(ModuleX);
+let ModuleXHoC = connect(ModuleX,function(state){
+	return {
+		updateCount:state.updateCount,
+		m1Var:state.m1Var
+	}
+});
 
 export default ModuleXHoC;

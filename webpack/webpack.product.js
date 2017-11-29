@@ -62,8 +62,10 @@ module.exports = (config)=>{
 			}]
 		}
 		,devServer:{
-			contentBase:outputDir
+			contentBase:outputDir,
+			port:8080
 		}
+		,devtool:+env.production?'cheap-source-map':'source-map'
 		,plugins:preplugins.concat([
 				    new ExtractTextPlugin(+env.production?'[name].[contenthash:8].css':'[name].css',{
 						allChunks:true

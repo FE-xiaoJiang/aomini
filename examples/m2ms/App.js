@@ -14,16 +14,20 @@ class App extends React.Component{
 		// store.bindContext(this);
 	}
 	render(){
-		let { store } = this.props;
+		let { removeModule1 } = this.props;
 		return (
 			<div>
-				{store.state.removeModule1?"":<Module1 />}
+				{removeModule1?"":<Module1 />}
 				<Module2 />
 				<ModuleX />
 			</div>
 			)
 	}
 }
-let AppHoC = connect(App);
+let AppHoC = connect(App,function(state){
+	return {
+		removeModule1:state.removeModule1
+	}
+});
 
 export default AppHoC;
