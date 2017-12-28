@@ -37,6 +37,7 @@ let store = {
 		for(let i = 0; i < this.contexts.length; i++){
 			context = this.contexts[i];
 			if(context && context.mapStateToProps){
+				context.onStateChange(this.state);
 				React.Component.prototype.setState.call(context,this.state);
 			}
 		}

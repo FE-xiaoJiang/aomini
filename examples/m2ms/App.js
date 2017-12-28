@@ -2,7 +2,7 @@ import React from 'react';
 import Module1 from './Module1';
 import Module2 from './Module2';
 import ModuleX from './ModuleX';
-import connect from '../../libs/connect';
+import connect from '../../modules/connect';
 
 /**
 * 入口组件

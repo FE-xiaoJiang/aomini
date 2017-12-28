@@ -1,7 +1,7 @@
 import React from 'react';
 import SubModule21 from './SubModule21';
 import SubModule22 from './SubModule22';
-import connect from '../../libs/connect';
+import connect from '../../modules/connect';
 
 /**
 * siblings2

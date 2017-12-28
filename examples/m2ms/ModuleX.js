@@ -1,5 +1,5 @@
 import React from 'react';
-import connect from '../../libs/connect';
+import connect from '../../modules/connect';
 
 class SubModuleX extends React.Component{
 	constructor(props) {
@@ -14,7 +14,11 @@ class SubModuleX extends React.Component{
 		// console.log("SubModuleX did update")
 	}
 }
-let SubModuleXHoC = connect(SubModuleX);
+let SubModuleXHoC = connect(SubModuleX,function(state){
+	return {
+		updateCount:state.updateCount
+	}
+});
 
 /**
 * siblings2
@@ -29,7 +33,7 @@ class ModuleX extends React.Component{
 	}
 	render(){
 		let { m1Var,updateCount } = this.props;
-		let subNum = Number(m1Var);
+		let subNum = Number(m1Var) || 0;
 		return (
 			<div>
 				<p>---------ModuleX---------</p>
@@ -39,7 +43,7 @@ class ModuleX extends React.Component{
 					subNum <= 0 ? "":(
 						Array(subNum).fill(1).map((item,i)=>{
 							return (
-								<SubModuleXHoC key={i} mIndex={i+1} updateCount={updateCount} />
+								<SubModuleXHoC key={i} mIndex={i+1} />
 							)
 						})
 					)
