@@ -1,8 +1,8 @@
 {
   "name": "react-aomini",
-  "version": "1.1.5",
+  "version": "1.1.6",
   "description": "react mini framework aomini",
-  "main": "index.js",
+  "main": "./libs/index.js",
   "directories": {
     "example": "examples"
   },
@@ -15,16 +15,26 @@
     "urlencode": "^1.1.0"
   },
   "devDependencies": {
+    "babel": "^6.23.0",
+    "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-plugin-transform-decorators-legacy": "^1.3.4",
-    "babel-preset-react": "^6.24.1"
+    "babel-preset-react": "^6.24.1",
+    "clean-webpack-plugin": "^0.1.17",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "html-webpack-plugin": "^2.30.1",
+    "rimraf": "^2.6.2",
+    "webpack": "^3.10.0",
+    "webpack-dev-server": "^2.9.7"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack --config webpack.config.js --progress --colors --display-error-details --watch --env.production=0",
     "product": "webpack --config webpack.config.js --env.production=1",
-    "start": "webpack-dev-server  --config webpack.config.js --progress --open --watch --env.production=0"
+    "start": "webpack-dev-server  --config webpack.config.js --progress --open --watch --env.production=0",
+    "build": "npm run build-cjs",
+    "build-cjs": "rimraf libs && babel ./modules -d libs --ignore '__tests__'"
   },
   "repository": {
     "type": "git",
