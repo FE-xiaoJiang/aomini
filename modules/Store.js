@@ -8,8 +8,8 @@ let store = {
 	contexts:[],
 	//state数据
 	state:{
-		m1Var:"111",
-		updateCount:1
+		// m1Var:"111",
+		// updateCount:1
 	},
 	listeners:[],
 	//注册绑定组件与状态数据，用于setState

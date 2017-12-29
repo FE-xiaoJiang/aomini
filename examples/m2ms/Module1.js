@@ -33,6 +33,6 @@ let Module1HoC = connect(Module1,function(state){
 	return{
 		m1Var:state.m1Var
 	}
-});
+},'Module1');
 
 export default Module1HoC;

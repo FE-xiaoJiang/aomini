@@ -1,5 +1,6 @@
 import React from 'react';
 import connect from '../../modules/connect';
+let smSeq = 1;
 
 class SubModuleX extends React.Component{
 	constructor(props) {
@@ -60,6 +61,7 @@ class ModuleX extends React.Component{
 	}
 	updateX(){
 		let { updateCount,setState } = this.props;
+		updateCount = +updateCount || 0;
 		setState({
 			updateCount:Number(updateCount)+1
 		})

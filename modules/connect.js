@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 let connectSeries = 1;
 
-function makeSelectorStateful(mapStateToProps){
+function makeSelectorStateful(mapStateToProps,props){
 	mapStateToProps = mapStateToProps ? mapStateToProps : initMapStateToProps;
 	let selector = {
-		mergeProps:void 0,
+		mergeProps:mapStateToProps(props),
 		run:function runComponentSelector(props) {
 			// selector.shouldComponentUpdate
 			let mergeProps = mapStateToProps(props);
@@ -46,7 +46,7 @@ function initMapStateToProps(state){
 	return {};
 }
 
-let connect = function(wrappedCompo,mapStateToProps){
+let connect = function(wrappedCompo,mapStateToProps,hocName){
 	let prevMergeProps = void 0;
 	class ConnectHoC extends React.Component{
 		constructor(props,context){
@@ -62,11 +62,11 @@ let connect = function(wrappedCompo,mapStateToProps){
 			// mapStateToProps = mapStateToProps ? mapStateToProps : initMapStateToProps;//自定义state to props
 		}
 		initSelector(mapStateToProps){
-			this.selector = makeSelectorStateful(mapStateToProps);
+			this.selector = makeSelectorStateful(mapStateToProps,this.store.getState());
 		}
-		shouldComponentUpdate(){
-			console.log("component ",this.compSeries," should upodate:",this.selector.shouldComponentUpdate);
-			return this.selector.shouldComponentUpdate || true;
+		shouldComponentUpdate(nextProps, nextState){
+			// console.log(hocName," component ",this.compSeries," should upodate:",this.selector.shouldComponentUpdate);
+			return (this.selector.shouldComponentUpdate || true) || !_deepEqual(this.props,nextProps);
 		}
 		render(){
 			// var mapStateToProps = this.mapStateToProps || initMapStateToProps;
