@@ -1,15 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import * as _ from './util';
 let connectSeries = 1;
 
 function makeSelectorStateful(mapStateToProps,props){
 	mapStateToProps = mapStateToProps ? mapStateToProps : initMapStateToProps;
 	let selector = {
-		mergeProps:mapStateToProps(props),
+		mergeProps:mapStateToProps(props),//用于初始化
 		run:function runComponentSelector(props) {
 			// selector.shouldComponentUpdate
 			let mergeProps = mapStateToProps(props);
-			if(_deepEqual(mergeProps,this.mergeProps)){
+			if(_._deepEqual(mergeProps,this.mergeProps)){
 				this.shouldComponentUpdate = false;
 			}else{
 				this.shouldComponentUpdate = true;
@@ -18,28 +19,6 @@ function makeSelectorStateful(mapStateToProps,props){
 		}
 	}
 	return selector;
-}
-
-function _deepEqual(objA, objB) {
-	if (objA === objB) return true;
-
-	if (typeof objA !== 'object' || objA === null || objA === undefined || typeof objB !== 'object' || objB === null || objB === undefined) {
-		return false;
-	}
-
-	var keysA = Object.keys(objA);
-	var keysB = Object.keys(objB);
-
-	if (keysA.length !== keysB.length) return false;
-
-	var hasOwn = Object.prototype.hasOwnProperty;
-	for (var i = 0; i < keysA.length; i++) {
-		if (!hasOwn.call(objB, keysA[i]) || !_deepEqual(objA[keysA[i]], objB[keysA[i]])) {
-			return false;
-		}
-	}
-
-	return true;
 }
 
 function initMapStateToProps(state){
@@ -66,7 +45,7 @@ let connect = function(wrappedCompo,mapStateToProps,hocName){
 		}
 		shouldComponentUpdate(nextProps, nextState){
 			// console.log(hocName," component ",this.compSeries," should upodate:",this.selector.shouldComponentUpdate);
-			return (this.selector.shouldComponentUpdate || true) || !_deepEqual(this.props,nextProps);
+			return (this.selector.shouldComponentUpdate || true) || !_._deepEqual(this.props,nextProps);
 		}
 		render(){
 			// var mapStateToProps = this.mapStateToProps || initMapStateToProps;
